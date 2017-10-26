@@ -4,6 +4,7 @@ import {
   dataWithLoadedFont,
   dataWithFailedFont,
 } from './helpers';
+import { InputFont, Font, LoadedFont, FallbackFont } from './types';
 
 describe('Helpers', () => {
   describe('load()', () => {

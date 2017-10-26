@@ -1,4 +1,4 @@
-interface BasicFont {
+export interface BasicFont {
   family: string;
   weight?: 100 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'normal' | 'bold';
   style?: 'italic' | 'normal' | 'oblique';
@@ -15,7 +15,7 @@ interface BasicFont {
   [custom: string]: any;
 }
 
-interface InputFont extends BasicFont {
+export interface InputFont extends BasicFont {
   styles?: {
     initial?: object;
     success: object;
@@ -28,37 +28,37 @@ interface InputFont extends BasicFont {
   };
 }
 
-interface OutputFont extends BasicFont {
+export interface OutputFont extends BasicFont {
   class?: string;
   styles?: object;
 }
 
-interface InitialFont extends OutputFont {} // tslint:disable-line
+export interface InitialFont extends OutputFont {} // tslint:disable-line
 
-interface FontWithTiming extends InputFont {
+export interface FontWithTiming extends InputFont {
   timing: number;
 }
 
-interface LoadedFont extends OutputFont {
+export interface LoadedFont extends OutputFont {
   timing: number;
 }
 
-interface FallbackFont extends OutputFont {
+export interface FallbackFont extends OutputFont {
   error: Error;
 }
 
-interface Fonts {
+export interface Fonts {
   [name: string]: InputFont;
 }
 
-type Font = InitialFont | LoadedFont | FallbackFont;
+export type Font = InitialFont | LoadedFont | FallbackFont;
 
-interface Options {
+export interface Options {
   timeout?: number;
   onFontReady?: (font: LoadedFont) => void;
   onFontTimeout?: (font: FallbackFont) => void;
 }
 
-type CancelablePromise<T> = Promise<T> & {
+export type CancelablePromise<T> = Promise<T> & {
   cancel?: () => void;
 };

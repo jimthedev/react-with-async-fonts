@@ -1,13 +1,20 @@
 import * as FontFaceObserver from 'fontfaceobserver';
 import makeCancelable from './make-cancelable';
-
+import {
+  InputFont,
+  CancelablePromise,
+  InitialFont,
+  FontWithTiming,
+  LoadedFont,
+  FallbackFont,
+} from './types';
 /**
  * Creates new font observer based on font data
  * @param font - font data to observe
  */
 export function load(
   font: InputFont,
-  timeout: number,
+  timeout?: number,
 ): CancelablePromise<InputFont> {
   const { family, style, weight, stretch } = font;
   const observer = new FontFaceObserver(family, { style, weight, stretch });

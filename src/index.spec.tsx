@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as FontFaceObserver from 'fontfaceobserver';
 import { shallow, mount } from 'enzyme';
 import withAsyncFonts from './index';
+import { Fonts } from './types';
 
 const wait = (delay: number) =>
   new Promise(resolve => setTimeout(resolve, delay));
@@ -62,14 +63,14 @@ describe('withAsyncFonts()', () => {
       expect(target.containsMatchingElement(<div>Foo</div>)).toBeTruthy();
       await wait(500);
       expect(
-        target.containsMatchingElement([
+        target.containsMatchingElement(
           <div
             className="font-loaded"
             style={{ fontFamily: 'Times New Roman, serif' }}
           >
             Foo
           </div>,
-        ]),
+        ),
       ).toEqual(true);
     });
 
@@ -132,7 +133,7 @@ describe('withAsyncFonts()', () => {
       jest.spyOn(FontFaceObserver.prototype, 'load').mockReset();
     });
 
-    it('should set font prop with fallback data', async () => {
+    fit('should set font prop with fallback data', async () => {
       const target = createHoC({ timeout: 100 });
       expect(target.containsMatchingElement(<div>Foo</div>)).toBeTruthy();
       await wait(1000);

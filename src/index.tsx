@@ -1,5 +1,5 @@
-/// <reference path="../types.d.ts" />
 import * as React from 'react';
+import { Font, Fonts, Options, CancelablePromise, InputFont } from './types';
 import {
   dataWithFailedFont,
   dataWithLoadedFont,
@@ -37,7 +37,7 @@ function withAsyncFonts<P>(
 
       private promises: Array<CancelablePromise<InputFont>> = [];
 
-      constructor(props) {
+      constructor(props: any) {
         super(props);
 
         // Set default state with basic font values
@@ -71,7 +71,7 @@ function withAsyncFonts<P>(
               });
               this.setState(
                 () => ({ [key]: loadedFont }),
-                () => onFontReady(loadedFont),
+                () => (onFontReady ? onFontReady(loadedFont) : null),
               );
             })
             .catch(({ isCanceled }) => {
@@ -81,7 +81,7 @@ function withAsyncFonts<P>(
               const fallbackFont = dataWithFailedFont(inputFont);
               this.setState(
                 () => ({ [key]: fallbackFont }),
-                () => onFontTimeout(fallbackFont),
+                () => (onFontTimeout ? onFontTimeout(fallbackFont) : null),
               );
             });
         });
@@ -89,7 +89,9 @@ function withAsyncFonts<P>(
 
       public componentWillUnmount() {
         // Mark all promises as canceled once component is unmounted
-        this.promises.forEach(promise => promise.cancel());
+        this.promises.forEach(
+          promise => (promise.cancel ? promise.cancel() : null),
+        );
       }
 
       public render() {
