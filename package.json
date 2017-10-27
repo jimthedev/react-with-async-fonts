@@ -14,7 +14,12 @@
     "coverage": "cat ./coverage/remapped/lcov.info | coveralls",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
-  "files": ["lib/", "src/", "README.md", "index.d.ts"],
+  "files": [
+    "lib/",
+    "src/",
+    "README.md",
+    "index.d.ts"
+  ],
   "keywords": [
     "react",
     "fonts",
@@ -33,14 +38,13 @@
     "react-dom": "^15.1.0"
   },
   "devDependencies": {
-    "@types/enzyme": "^3.1.1",
-    "@types/fontfaceobserver": "0.0.5",
+    "@types/cheerio": "^0.22.3",
     "@types/jest": "^21.1.2",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
     "coveralls": "^3.0.0",
     "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.0.1",
+    "enzyme-adapter-react-16": "^1.0.2",
     "jest": "^21.2.1",
     "react": "^16.0.0",
     "react-addons-test-utils": "^15.6.2",
@@ -52,13 +56,25 @@
     "typescript": "^2.5.3"
   },
   "jest": {
-    "setupFiles": ["./.jest.js"],
+    "setupFiles": [
+      "./.jest.js"
+    ],
     "mapCoverage": true,
-    "moduleFileExtensions": ["ts", "tsx", "js", "json"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
     "transform": {
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "src/.*\\.spec\\.(ts|tsx)$",
-    "collectCoverageFrom": ["src/**/*", "!src/**/*.spec.*", "!src/types.ts"]
+    "collectCoverageFrom": [
+      "src/**/*",
+      "!src/**/*.spec.*",
+      "!src/types.ts",
+      "!src/**/*.d.ts"
+    ]
   }
 }
