@@ -18,9 +18,7 @@ export interface State {
 function withAsyncFonts<P>(
   fonts: Fonts,
   userOptions?: Options,
-): (
-  BaseComponent: React.ComponentType<P & State>,
-) => React.ComponentClass<P & State> {
+): (BaseComponent: React.ComponentType<any>) => React.ComponentClass<any> {
   const options: Options = {
     onFontTimeout: noop,
     onFontReady: noop,
